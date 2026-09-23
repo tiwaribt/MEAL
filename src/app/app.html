@@ -1,0 +1,90 @@
+<div class="min-h-screen bg-slate-100/70 text-slate-900 flex flex-col font-sans antialiased selection:bg-teal-900 selection:text-white">
+  <!-- Top Navigation Bar Contract (Single Row, 3 Zones) -->
+  <app-top-bar class="print:hidden" (openAiAssistant)="openAiAssistant()"></app-top-bar>
+
+  <!-- Main View Router Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    @switch (mealService.activeTab()) {
+      @case ('dashboard') {
+        <app-dashboard-view></app-dashboard-view>
+      }
+      @case ('logframe') {
+        <app-logframe-view (triggerAiAssist)="openAiAssistant('generate-indicator')"></app-logframe-view>
+      }
+      @case ('form-builder') {
+        <app-form-builder-view></app-form-builder-view>
+      }
+      @case ('mobile-collection') {
+        <app-mobile-collector-view></app-mobile-collector-view>
+      }
+      @case ('mobile-collector') {
+        <app-mobile-collector-view></app-mobile-collector-view>
+      }
+      @case ('data-viz') {
+        <app-data-visualization-view></app-data-visualization-view>
+      }
+      @case ('field-visits') {
+        <app-field-visits-view></app-field-visits-view>
+      }
+      @case ('verification') {
+        <app-dqa-verification-view></app-dqa-verification-view>
+      }
+      @case ('digital-tools') {
+        <app-digital-tools-view></app-digital-tools-view>
+      }
+      @case ('accountability') {
+        <app-cfrm-view (triggerAiAnalysis)="openAiAssistant('analyze-cfrm')"></app-cfrm-view>
+      }
+      @case ('learning') {
+        <app-learning-view (triggerAiDraft)="openAiAssistant('draft-case-study')"></app-learning-view>
+      }
+      @case ('reporting') {
+        <app-reporting-view></app-reporting-view>
+      }
+      @case ('visibility') {
+        <app-visibility-studio-view></app-visibility-studio-view>
+      }
+      @case ('evidence') {
+        <app-evidence-archive-view></app-evidence-archive-view>
+      }
+      @case ('gantt') {
+        <app-gantt-workplan-view></app-gantt-workplan-view>
+      }
+      @case ('export') {
+        <app-system-export-hub-view></app-system-export-hub-view>
+      }
+      @case ('admin') {
+        <app-admin-panel-settings-view></app-admin-panel-settings-view>
+      }
+      @default {
+        <app-dashboard-view></app-dashboard-view>
+      }
+    }
+  </main>
+
+  <!-- Institutional Footer (Print Hidden) -->
+  <footer class="bg-white border-t border-slate-200 mt-auto py-8 text-xs text-slate-500 print:hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-6 rounded bg-teal-900 text-white flex items-center justify-center font-bold text-xs">
+          M
+        </span>
+        <div>
+          <span class="font-bold text-slate-800">MEAL Suite Platform</span>
+          <span class="block text-[11px]">Monitoring, Evaluation, Accountability & Learning (MEAL) Directorate</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs">
+        <span>Grounded in Core Humanitarian Standard (CHS 5)</span>
+        <span>·</span>
+        <span>USAID & FCDO DQA Compliant</span>
+        <span>·</span>
+        <span>NBC 105 Seismic Guidelines</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global MEAL AI Assistant Modal -->
+  <app-ai-assist-modal></app-ai-assist-modal>
+</div>

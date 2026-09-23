@@ -1,0 +1,6 @@
+{
+  "name": "MEAL Suite",
+  "description": "Comprehensive MEAL & DRR management platform: log frames, indicator tracking, field visit monitoring, DQA beneficiary verification, digital data collection (Kobo/ODK/Forms), CFRM accountability, learning & case studies, donor reporting, and Canva-ready communication studio.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
