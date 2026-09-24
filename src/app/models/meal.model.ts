@@ -113,6 +113,9 @@ export interface BeneficiaryRecord {
   verifiedDate?: string;
   verifiedBy?: string;
   dqaNotes?: string;
+  latitude?: number;
+  longitude?: number;
+  palikaId?: string;
 }
 
 export interface DqaAssessment {

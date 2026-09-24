@@ -19,6 +19,7 @@ import { AdminPanelSettingsView } from './components/admin-panel-settings-view';
 import { FormBuilderView } from './components/form-builder-view';
 import { MobileCollectorView } from './components/mobile-collector-view';
 import { DataVisualizationView } from './components/data-visualization-view';
+import { GisMapView } from './components/gis-map-view';
 import { AiAssistModal } from './components/ai-assist-modal';
 
 @Component({
@@ -29,6 +30,7 @@ import { AiAssistModal } from './components/ai-assist-modal';
     MatIconModule,
     TopBar,
     DashboardView,
+    GisMapView,
     LogframeView,
     FormBuilderView,
     MobileCollectorView,

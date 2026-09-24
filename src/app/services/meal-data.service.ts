@@ -27,6 +27,7 @@ import {
   RolePermission
 } from '../models/meal.model';
 import { NepalGeoService } from './nepal-geo.service';
+import { SEED_NEPAL_BENEFICIARIES } from '../data/nepal-gis-beneficiaries.data';
 
 @Injectable({
   providedIn: 'root'
@@ -61,21 +62,22 @@ export class MealDataService {
   // Dynamic Navigation Menus with Ordering & Toggle Controls (LogAlto Full Feature Suite)
   readonly adminMenuItems = signal<AdminMenuItem[]>([
     { id: 'dashboard', title: 'MEAL Dashboard', icon: 'dashboard', path: 'dashboard', enabled: true, order: 1 },
-    { id: 'logframe', title: 'Indicator Tracking', icon: 'tune', path: 'logframe', enabled: true, order: 2, badge: 'PIRS' },
-    { id: 'form-builder', title: 'M&E Form Builder', icon: 'dynamic_form', path: 'form-builder', enabled: true, order: 3, badge: 'Builder' },
-    { id: 'mobile-collection', title: 'Mobile Collector', icon: 'cell_tower', path: 'mobile-collection', enabled: true, order: 4, badge: 'Offline' },
-    { id: 'data-viz', title: 'Data Visualization', icon: 'insights', path: 'data-viz', enabled: true, order: 5, badge: 'Pivot/Charts' },
-    { id: 'gantt', title: 'Gantt Workplan', icon: 'view_timeline', path: 'gantt', enabled: true, order: 6 },
-    { id: 'visits', title: 'Field Monitoring', icon: 'fact_check', path: 'visits', enabled: true, order: 7 },
-    { id: 'dqa', title: 'Beneficiaries & DQA', icon: 'people', path: 'dqa', enabled: true, order: 8, badge: '94%' },
-    { id: 'cfrm', title: 'CFRM & Safeguarding', icon: 'support_agent', path: 'cfrm', enabled: true, order: 9 },
-    { id: 'learning', title: 'Learning & Cases', icon: 'auto_stories', path: 'learning', enabled: true, order: 10 },
-    { id: 'digital-tools', title: 'Digital Tools (ODK/Kobo)', icon: 'devices', path: 'digital-tools', enabled: true, order: 11 },
-    { id: 'visibility', title: 'Visibility Studio', icon: 'palette', path: 'visibility', enabled: true, order: 12 },
-    { id: 'archive', title: 'Evidence MoV', icon: 'folder', path: 'archive', enabled: true, order: 13 },
-    { id: 'reporting', title: 'Donor Reports', icon: 'summarize', path: 'reporting', enabled: true, order: 14 },
-    { id: 'export', title: 'System Export Hub', icon: 'cloud_download', path: 'export', enabled: true, order: 15, badge: 'Excel/Zip' },
-    { id: 'admin', title: 'Admin & System Config', icon: 'admin_panel_settings', path: 'admin', enabled: true, order: 16 }
+    { id: 'gis-map', title: 'GIS Outreach Map', icon: 'travel_explore', path: 'gis-map', enabled: true, order: 2, badge: '753 GIS' },
+    { id: 'logframe', title: 'Indicator Tracking', icon: 'tune', path: 'logframe', enabled: true, order: 3, badge: 'PIRS' },
+    { id: 'form-builder', title: 'M&E Form Builder', icon: 'dynamic_form', path: 'form-builder', enabled: true, order: 4, badge: 'Builder' },
+    { id: 'mobile-collection', title: 'Mobile Collector', icon: 'cell_tower', path: 'mobile-collection', enabled: true, order: 5, badge: 'Offline' },
+    { id: 'data-viz', title: 'Data Visualization', icon: 'insights', path: 'data-viz', enabled: true, order: 6, badge: 'Pivot/Charts' },
+    { id: 'gantt', title: 'Gantt Workplan', icon: 'view_timeline', path: 'gantt', enabled: true, order: 7 },
+    { id: 'visits', title: 'Field Monitoring', icon: 'fact_check', path: 'visits', enabled: true, order: 8 },
+    { id: 'dqa', title: 'Beneficiaries & DQA', icon: 'people', path: 'dqa', enabled: true, order: 9, badge: '94%' },
+    { id: 'cfrm', title: 'CFRM & Safeguarding', icon: 'support_agent', path: 'cfrm', enabled: true, order: 10 },
+    { id: 'learning', title: 'Learning & Cases', icon: 'auto_stories', path: 'learning', enabled: true, order: 11 },
+    { id: 'digital-tools', title: 'Digital Tools (ODK/Kobo)', icon: 'devices', path: 'digital-tools', enabled: true, order: 12 },
+    { id: 'visibility', title: 'Visibility Studio', icon: 'palette', path: 'visibility', enabled: true, order: 13 },
+    { id: 'archive', title: 'Evidence MoV', icon: 'folder', path: 'archive', enabled: true, order: 14 },
+    { id: 'reporting', title: 'Donor Reports', icon: 'summarize', path: 'reporting', enabled: true, order: 15 },
+    { id: 'export', title: 'System Export Hub', icon: 'cloud_download', path: 'export', enabled: true, order: 16, badge: 'Excel/Zip' },
+    { id: 'admin', title: 'Admin & System Config', icon: 'admin_panel_settings', path: 'admin', enabled: true, order: 17 }
   ]);
 
   // Gantt Chart Activities & Workplan
@@ -1292,160 +1294,7 @@ export class MealDataService {
     }
   ]);
 
-  readonly beneficiaries = signal<BeneficiaryRecord[]>([
-    {
-      id: 'ben-001',
-      beneficiaryCode: 'BEN-2026-0189',
-      fullName: 'Sunita Thapa',
-      gender: 'Female',
-      age: 34,
-      vulnerabilities: ['Female-Headed', 'Marginalized Dalit/Janajati'],
-      citizenshipNumber: '27-01-72-04519',
-      phoneNumber: '9841238910',
-      projectId: 'proj-bcrp',
-      district: 'Sindhupalchok',
-      municipality: 'Chautara Sangachokgadhi',
-      ward: 4,
-      intervention: '7-Day Mason Retrofitting & Seismic Training',
-      verificationStatus: 'Verified',
-      verifiedDate: '2026-09-18',
-      verifiedBy: 'Anil Maharjan (MEAL)',
-      dqaNotes: 'Original citizenship verified; practical exam grade 88%; certified.'
-    },
-    {
-      id: 'ben-002',
-      beneficiaryCode: 'BEN-2026-0190',
-      fullName: 'Bikram Bahadur Pariyar',
-      gender: 'Male',
-      age: 41,
-      vulnerabilities: ['Marginalized Dalit/Janajati'],
-      citizenshipNumber: '27-01-68-01124',
-      phoneNumber: '9813567822',
-      projectId: 'proj-bcrp',
-      district: 'Sindhupalchok',
-      municipality: 'Chautara Sangachokgadhi',
-      ward: 4,
-      intervention: '7-Day Mason Retrofitting & Seismic Training',
-      verificationStatus: 'Verified',
-      verifiedDate: '2026-09-18',
-      verifiedBy: 'Anil Maharjan (MEAL)',
-      dqaNotes: 'Tool-kit grant handed over with signed voucher #TK-481.'
-    },
-    {
-      id: 'ben-003',
-      beneficiaryCode: 'BEN-2026-0191',
-      fullName: 'Gita Maya Tamang',
-      gender: 'Female',
-      age: 29,
-      vulnerabilities: ['Single Female'],
-      citizenshipNumber: '24-02-74-09821',
-      phoneNumber: '9808945112',
-      projectId: 'proj-bcrp',
-      district: 'Gorkha',
-      municipality: 'Gorkha Municipality',
-      ward: 7,
-      intervention: 'Community First Responder & Search/Rescue',
-      verificationStatus: 'Verified',
-      verifiedDate: '2026-09-20',
-      verifiedBy: 'Pradeep Bhattarai (MEAL)',
-      dqaNotes: 'Attended 100% of sessions; demonstrated triage skills.'
-    },
-    {
-      id: 'ben-004',
-      beneficiaryCode: 'BEN-2026-0192',
-      fullName: 'Karna Bahadur BK',
-      gender: 'Male',
-      age: 52,
-      vulnerabilities: ['PWD', 'Marginalized Dalit/Janajati'],
-      citizenshipNumber: '24-02-61-00412',
-      phoneNumber: '9846012948',
-      projectId: 'proj-bcrp',
-      district: 'Gorkha',
-      municipality: 'Gorkha Municipality',
-      ward: 7,
-      intervention: 'Community Early Warning & DRR Committee',
-      verificationStatus: 'Verified',
-      verifiedDate: '2026-09-20',
-      verifiedBy: 'Pradeep Bhattarai (MEAL)',
-      dqaNotes: 'PWD representation confirmed; active CDMC mobilization.'
-    },
-    {
-      id: 'ben-005',
-      beneficiaryCode: 'BEN-2026-0193',
-      fullName: 'Sita Kumari Shrestha',
-      gender: 'Female',
-      age: 38,
-      vulnerabilities: ['None'],
-      citizenshipNumber: '27-01-70-03310',
-      phoneNumber: '9841238910', // Potential duplicate phone number with Sunita Thapa
-      projectId: 'proj-bcrp',
-      district: 'Sindhupalchok',
-      municipality: 'Chautara Sangachokgadhi',
-      ward: 4,
-      intervention: '7-Day Mason Retrofitting & Seismic Training',
-      verificationStatus: 'Flagged Duplicate',
-      verifiedDate: undefined,
-      verifiedBy: undefined,
-      dqaNotes: 'DQA system flagged shared phone number (9841238910) with BEN-2026-0189; needs field verification.'
-    },
-    {
-      id: 'ben-006',
-      beneficiaryCode: 'BEN-2026-0194',
-      fullName: 'Prakash Dangol',
-      gender: 'Male',
-      age: 16,
-      vulnerabilities: ['None'],
-      citizenshipNumber: '27-01-79-11200',
-      phoneNumber: '9823450912',
-      projectId: 'proj-ssep',
-      district: 'Kathmandu',
-      municipality: 'Kathmandu Met',
-      ward: 16,
-      intervention: 'School Evacuation Drill & Student DRR Club',
-      verificationStatus: 'Verified',
-      verifiedDate: '2026-09-12',
-      verifiedBy: 'Maya Tamang (MEAL)',
-      dqaNotes: 'Student DRR club coordinator; verified via school roster.'
-    },
-    {
-      id: 'ben-007',
-      beneficiaryCode: 'BEN-2026-0195',
-      fullName: 'Aarati Sharma',
-      gender: 'Female',
-      age: 44,
-      vulnerabilities: ['None'],
-      citizenshipNumber: '28-01-66-02941',
-      phoneNumber: '9851084920',
-      projectId: 'proj-surp',
-      district: 'Kathmandu',
-      municipality: 'Kathmandu Met',
-      ward: 10,
-      intervention: 'Municipal Building Code NBC 105 Training',
-      verificationStatus: 'Verified',
-      verifiedDate: '2026-09-15',
-      verifiedBy: 'Bikash Adhikari',
-      dqaNotes: 'Municipal senior sub-engineer verified with office ID.'
-    },
-    {
-      id: 'ben-008',
-      beneficiaryCode: 'BEN-2026-0196',
-      fullName: 'Ram Prasad Neupane',
-      gender: 'Male',
-      age: 33,
-      vulnerabilities: ['None'],
-      citizenshipNumber: '25-01-75-01822',
-      phoneNumber: '9849112233',
-      projectId: 'proj-tdart',
-      district: 'Jajarkot',
-      municipality: 'Bheri Municipality',
-      ward: 3,
-      intervention: 'Post-Earthquake Damage Assessment (Kobo)',
-      verificationStatus: 'Pending DQA',
-      verifiedDate: undefined,
-      verifiedBy: undefined,
-      dqaNotes: 'Assessment data collected via KoboToolbox; pending photo evidence verification.'
-    }
-  ]);
+  readonly beneficiaries = signal<BeneficiaryRecord[]>(SEED_NEPAL_BENEFICIARIES);
 
   readonly dqaAssessments = signal<DqaAssessment[]>([
     {

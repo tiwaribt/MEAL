@@ -1018,7 +1018,7 @@ export class DerejaDashboardView {
     if (!status) return;
 
     this.candidates.update(list =>
-      list.map(cand => cand.id === c.id ? { ...cand, tracer6MonthStatus: status as any } : cand)
+      list.map(cand => cand.id === c.id ? { ...cand, tracer6MonthStatus: status as DerejaCandidate['tracer6MonthStatus'] } : cand)
     );
     alert(`Tracer record updated for ${c.fullName}: ${status}`);
   }

@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MealDataService } from '../services/meal-data.service';
-import { MealIndicator } from '../models/meal.model';
 
 type MeStudioTab = 'sampling' | 'smart-checker' | 'oecd-dac' | 'evaluability' | 'method-selector' | 'indicator-library' | 'ai-review';
 
@@ -1629,11 +1627,14 @@ ${this.evaluabilityQuestions().map(q => `[${q.score}/2] ${q.category}: ${q.quest
         if (purpose === 'prevalence') score += 25;
         if (access === 'mountain') score += 5; // offline mode excels
         if (literacy === 'low') score += 10; // enumerator guided
+        if (sens === 'high') score += 5; // confidential 1-on-1 interview
       } else if (m.id === 'fgd') {
         if (purpose === 'depth') score += 25;
         if (literacy === 'low') score += 15;
+        if (sens === 'high') score -= 20; // group dynamics compromise sensitive safeguarding
       } else if (m.id === 'kii') {
         if (purpose === 'routine' || purpose === 'depth') score += 20;
+        if (sens === 'high') score += 15; // expert / confidential key informant
       } else if (m.id === 'observation') {
         if (purpose === 'routine' || purpose === 'prevalence') score += 15;
       } else if (m.id === 'mobile-sms') {
@@ -1641,6 +1642,7 @@ ${this.evaluabilityQuestions().map(q => `[${q.score}/2] ${q.category}: ${q.quest
         if (access === 'urban') score += 10;
         if (access === 'mountain') score -= 25;
         if (literacy === 'low') score -= 30;
+        if (sens === 'high') score -= 15;
       }
       return { ...m, matchScore: Math.min(98, Math.max(35, score)) };
     }).sort((a, b) => b.matchScore - a.matchScore);

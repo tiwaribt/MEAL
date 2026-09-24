@@ -38,6 +38,13 @@ import { NepalGeoSelector } from './nepal-geo-selector';
           <div class="flex flex-wrap items-center gap-2 shrink-0">
             <button
               type="button"
+              (click)="mealService.setActiveTab('gis-map')"
+              class="px-3.5 py-2 bg-teal-900 hover:bg-teal-800 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs">
+              <mat-icon class="text-xs">travel_explore</mat-icon>
+              <span>753 Palika GIS Map</span>
+            </button>
+            <button
+              type="button"
               (click)="isCustomizeModalOpen.set(true)"
               class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs">
               <mat-icon class="text-xs">dashboard_customize</mat-icon>

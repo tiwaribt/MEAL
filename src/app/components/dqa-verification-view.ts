@@ -30,6 +30,13 @@ import { NepalGeoSelector } from './nepal-geo-selector';
         <div class="flex items-center gap-2 shrink-0">
           <button
             type="button"
+            (click)="mealService.setActiveTab('gis-map')"
+            class="px-3.5 py-2 bg-teal-800 hover:bg-teal-900 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs">
+            <mat-icon class="text-xs">travel_explore</mat-icon>
+            <span>GIS Map View</span>
+          </button>
+          <button
+            type="button"
             (click)="runDuplicateScan()"
             class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs">
             <mat-icon class="text-xs">security</mat-icon>

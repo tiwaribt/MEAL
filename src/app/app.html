@@ -8,6 +8,9 @@
       @case ('dashboard') {
         <app-dashboard-view></app-dashboard-view>
       }
+      @case ('gis-map') {
+        <app-gis-map-view></app-gis-map-view>
+      }
       @case ('logframe') {
         <app-logframe-view (triggerAiAssist)="openAiAssistant('generate-indicator')"></app-logframe-view>
       }
